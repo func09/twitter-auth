@@ -3,7 +3,7 @@ module TwitterAuth
 
   def self.config(environment=Rails.env)
     @config ||= {}
-    @config[environment] ||= YAML.load(File.open(File.join(Rails.root, 'config', 'twitter_auth.yml')).read)[environment]
+    @config[environment] ||= YAML.load(ERB.new(File.open(RAILS_ROOT + '/config/twitter_auth.yml').read).result)[environment]
   end
 
   def self.base_url
